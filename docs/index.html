@@ -3,39 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded Page</title>
     <style>
-        /* Убираем отступы */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        /* Полная ширина страницы */
-        html, body { height: 100%; }
-        
-        /* Свойства фрейма */
-        .custom-frame {
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        iframe {
             width: 100%;
-            display: block;
+            min-height: calc(100vh + 200px); /* 200px больше высоты окна */
+            border: none;
         }
     </style>
 </head>
 <body>
-    
-    <!-- Iframe -->
-    <iframe class="custom-frame" id="dynamicFrame" src="https://foxvideocommunity.wordpress.com/" frameborder="0"></iframe>
-
-    <!-- Скрипт для изменения размера iframe -->
-    <script>
-        // Получаем элемент iframe
-        const dynamicFrame = document.getElementById('dynamicFrame');
-
-        // Устанавливаем высоту равную 100% окна браузера + 200px
-        function adjustHeight() {
-            dynamicFrame.style.height = `${window.innerHeight + 200}px`;
-        }
-
-        // Обновляем высоту при загрузке страницы и изменении размеров окна
-        window.addEventListener("load", adjustHeight);
-        window.addEventListener("resize", adjustHeight);
-    </script>
-
+    <iframe src="https://foxvideocommunity.wordpress.com" title="Fox Video Community"></iframe>
 </body>
 </html>
