@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Iframe Source Based on URL Parameter</title>
+    <title>Dynamic Iframe Source with Position Adjustment</title>
     <style>
         body, html {
             margin: 0;
@@ -14,6 +14,7 @@
             width: 100vw;
             height: 100vh;
             border: none;
+            transition: transform 0.3s ease; /* Анимация перемещения */
         }
     </style>
 </head>
@@ -43,7 +44,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Изменяем источник фрейма
-    document.getElementById("video-frame").src = updatedUrl;
+    const videoFrame = document.getElementById("video-frame");
+    videoFrame.src = updatedUrl;
+
+    // Настройка положения фрейма
+    if (chanell) {
+        // Если параметр есть, сдвигаем фрейм вниз на 200px
+        videoFrame.style.transform = "translateY(200px)";
+    } else {
+        // Если параметра нет, оставляем фрейм сверху (смещаем вверх на 200px)
+        videoFrame.style.transform = "translateY(-200px)";
+    }
 });
 </script>
 
