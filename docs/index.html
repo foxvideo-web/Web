@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Разбиваем URL и проверяем наличие параметра "chanell"
     const urlParams = new URLSearchParams(currentUrl.split('?')[1]);
     const chanell = urlParams.get('chanell'); // Получаем значение параметра chanell
+    const page = urlParams.get('page');
 
     // Основная ссылка
     const baseUrl = "https://foxvideocommunity.wordpress.com";
@@ -39,6 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let updatedUrl = "";
     if (chanell) {
         updatedUrl = `${baseUrl}/channels/${chanell}`;
+    } else if (page) {
+        updatedUrl = `${baseUrl}/${page}`;
     } else {
         updatedUrl = baseUrl;
     }
