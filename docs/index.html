@@ -7,20 +7,18 @@
         body, html {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Убираем общую прокрутку */
+            overflow: hidden; /* Прямо выключаем глобальную прокрутку */
         }
-        #wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
+        #page-container {
+            position: relative;
             width: 100vw;
             height: 100vh;
-            overflow: auto; /* Внутренняя прокрутка только в рамках wrapper'а */
+            overflow: auto; /* Включаем прокрутку только внутри блока */
         }
     </style>
 </head>
 <body>
-    <div id="wrapper">
+    <div id="page-container">
         <iframe src="https://foxvideocommunity.wordpress.com" width="100%" height="100%" seamless></iframe>
     </div>
 </body>
