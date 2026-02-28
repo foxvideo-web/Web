@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Iframe Source Based on URL Parameter</title>
     <style>
         body, html {
             margin: 0;
@@ -11,13 +12,40 @@
         }
         iframe {
             width: 100vw;
-            height: calc(100vh + 100px); /* На 200px выше экрана */
-            transform: translateY(-100px); /* Смещаем вверх на 200px */
+            height: 100vh;
             border: none;
         }
     </style>
 </head>
 <body>
-    <iframe src="https://foxvideocommunity.wordpress.com"></iframe>
+
+<!-- Элемент iframe -->
+<iframe id="video-frame" src=""></iframe>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    // Получаем текущую URL страницы
+    const currentUrl = window.location.href;
+
+    // Разбиваем URL и проверяем наличие параметра "chanell"
+    const urlParams = new URLSearchParams(currentUrl.split('?')[1]);
+    const chanell = urlParams.get('chanell'); // Получаем значение параметра chanell
+
+    // Основная ссылка
+    const baseUrl = "https://foxvideocommunity.wordpress.com";
+
+    // Новый URL в зависимости от наличия переменной chanell
+    let updatedUrl = "";
+    if (chanell) {
+        updatedUrl = `${baseUrl}/channels/${chanell}`;
+    } else {
+        updatedUrl = baseUrl;
+    }
+
+    // Изменяем источник фрейма
+    document.getElementById("video-frame").src = updatedUrl;
+});
+</script>
+
 </body>
 </html>
