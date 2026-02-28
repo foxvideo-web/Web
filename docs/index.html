@@ -54,8 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (chanell) {
         // Если параметр есть, сдвигаем фрейм вниз на 200px
         videoFrame.style.transform = "translateY(-50px)";
-    } else {
+    } else if (page) {
         // Если параметра нет, оставляем фрейм сверху (смещаем вверх на 200px)
+        videoFrame.style.transform = "translateY(-50px)";
+    } else {
         videoFrame.style.transform = "translateY(-50px)";
     }
 });
