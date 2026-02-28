@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embedded Page</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
-        }
-        iframe {
-            width: 100%;
-            min-height: calc(100vh + 200px); /* 200px больше высоты окна */
-            border: none;
+            overflow: hidden; /* Убираем прокрутку на странице */
         }
     </style>
 </head>
 <body>
-    <iframe src="https://foxvideocommunity.wordpress.com" title="Fox Video Community"></iframe>
+    <div id="container"></div>
+    <script>
+        fetch('https://foxvideocommunity.wordpress.com')
+          .then(response => response.text())
+          .then(data => {
+              document.querySelector('#container').innerHTML = data;
+          })
+          .catch(error => console.error('Ошибка:', error));
+    </script>
 </body>
 </html>
