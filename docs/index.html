@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(currentUrl.split('?')[1]);
     const chanell = urlParams.get('chanell'); // Получаем значение параметра chanell
     const page = urlParams.get('page');
+    const date = urlParams.get('date');
+    const id = urlParams.get('id');
 
     // Основная ссылка
     const baseUrl = "https://foxvideocommunity.wordpress.com";
@@ -44,6 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
         updatedUrl = `${baseUrl}/${page}`;
     } else {
         updatedUrl = baseUrl;
+    }
+    if (date,chanell,id) {
+        updateUrl = `${baseUrl}/${date}/${chanell}-${id}`;
     }
 
     // Изменяем источник фрейма
