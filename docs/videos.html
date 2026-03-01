@@ -2,25 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Адаптация под мобильные устройства -->
-    <title>Adaptive Random Iframe Example</title>
+    <title>Redirect On Scroll Example</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Убираем полосы прокрутки */
+            overflow-y: scroll; /* Включаем вертикальную прокрутку */
+            height: 200vh; /* Сделаем искусственно длиннее страницу */
         }
 
         #randomIframe {
-            position: relative; /* Позиционируем относительным образом */
-            width: 100%; /* Автоматически адаптируется под устройство */
-            height: calc(100vh - env(safe-area-inset-top)); /* Вычитаем пространство safe area для iPhone X+ */
-            border: none; /* Убираем рамку */
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            border: none;
         }
     </style>
 </head>
 <body>
-    <!-- Элемент iframe, растянутый на весь экран -->
+    <!-- Растянутый фрейм -->
     <iframe id="randomIframe"></iframe>
 
     <script>
@@ -48,7 +48,7 @@
             'https://foxvideo-web.github.io/Web/?date=2025/10/25&chanell=memeha&id=13',
             'https://foxvideo-web.github.io/Web/?date=2025/10/24&chanell=orange-fox-studios-news&id=8',
             'https://foxvideo-web.github.io/Web/?date=2025/10/11&chanell=orange-fox-studios-news&id=7',
-            'https://foxvideo-web.github.io/Web/?date=2025/10/11&channel=orange-fox-studios-news&id=6',
+            'https://foxvideo-web.github.io/Web/?date=2025/10/11&chanell=orange-fox-studios-news&id=6',
             'https://foxvideo-web.github.io/Web/?date=2025/09/30&chanell=memeha&id=12',
             'https://foxvideo-web.github.io/Web/?date=2025/09/29&chanell=memeha&id=11',
             'https://foxvideo-web.github.io/Web/?date=2025/09/19&chanell=memeha&id=10',
@@ -67,12 +67,34 @@
             'https://foxvideo-web.github.io/Web/?date=2025/09/18&chanell=memeha&id=1'
         ];
 
-        function setRandomLink() {
-            const randomIndex = Math.floor(Math.random() * links.length); // Генерируем случайный индекс
-            document.getElementById('randomIframe').src = links[randomIndex]; // Проставляем ссылку
+        // Переменная для отслеживания предыдущей позиции прокрутки
+        let lastScrollPosition = 0;
+
+        // Функция обработки прокрутки
+        function handleScroll() {
+            const currentScrollPosition = window.scrollY || window.pageYOffset;
+
+            // Проверяем направление прокрутки
+            if (currentScrollPosition > lastScrollPosition + 0.5 && Date.now() - startTime >= 50) {
+                location.href = 'https://foxvideo-web.github.io/Web/videos.html';
+            }
+
+            lastScrollPosition = currentScrollPosition;
         }
 
-        // Установка случайной ссылки при загрузке страницы
+        // Начало отсчета времени
+        let startTime = Date.now();
+
+        // Назначаем слушатель прокрутки
+        window.addEventListener('scroll', handleScroll);
+
+        // Первая загрузка случайной ссылки
+        function setRandomLink() {
+            const randomIndex = Math.floor(Math.random() * links.length);
+            document.getElementById('randomIframe').src = links[randomIndex];
+        }
+
+        // Выполняем при загрузке страницы
         window.onload = setRandomLink;
     </script>
 </body>
