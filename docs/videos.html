@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Важно для мобильного дизайна -->
-    <title>Watch on Fox Video</title>
+    <title>Redirect On Scroll Example</title>
     <style>
         body, html {
             margin: 0;
@@ -72,7 +72,7 @@
         // Функция обработки прокрутки
         function handleScroll() {
             // Простая проверка на минимальное перемещение вниз
-            if (window.scrollY > 0.5) {
+            if ((window.scrollY || window.pageYOffset) > 0.5) {
                 location.href = 'https://foxvideo-web.github.io/Web/videos.html'; // Перенаправляем на новое местоположение
             }
         }
