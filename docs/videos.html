@@ -2,24 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IFrame Scroll Halfway Transition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Важно для мобильного дизайна -->
+    <title>Redirect On Scroll Example</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
-            overflow: hidden;
+            overflow-x: hidden; /* Отключаем горизонтальную прокрутку */
+            overflow-y: auto; /* Разрешаем вертикальную прокрутку */
+            min-height: 100vh; /* Минимальная высота равна высоте экрана */
         }
 
         #randomIframe {
             position: relative;
             width: 100%;
-            height: 100vh;
+            height: 100vh; /* Растяжение фрейма на весь экран */
             border: none;
         }
     </style>
 </head>
 <body>
+    <!-- Фрейм на весь экран -->
     <iframe id="randomIframe"></iframe>
 
     <script>
@@ -66,33 +69,24 @@
             'https://foxvideo-web.github.io/Web/?date=2025/09/18&chanell=memeha&id=1'
         ];
 
-        // Основной обработчик прокрутки страницы
-        window.addEventListener('scroll', () => {
-            setRandomLink();
-        });
+        // Функция обработки прокрутки
+        function handleScroll() {
+            // Простая проверка на минимальное перемещение вниз
+            if ((window.scrollY || window.pageYOffset) > -0.5) {
+                location.href = 'https://foxvideo-web.github.io/Web/videos.html'; // Перенаправляем на новое местоположение
+            }
+        }
 
-        // Прослушиваем прокрутку внутри фрейма
-        const myIframe = document.getElementById('randomIframe');
-        myIframe.onload = function() {
-            const innerDoc = this.contentDocument || this.contentWindow.document;
-            innerDoc.addEventListener('scroll', function(event) {
-                const scrollPos = event.target.scrollTop;
-                const totalHeight = event.target.scrollHeight - event.target.clientHeight;
+        // Начинаем следить за событием прокрутки
+        window.addEventListener('scroll', handleScroll);
 
-                // Если прокрутили больше половины страницы
-                if (scrollPos >= maxScroll / 2) {
-                    window.location.href = 'https://foxvideo-web.github.io/Web/videos.html';
-                }
-            });
-        };
-
-        // Смена случайной ссылки
+        // Первое присвоение случайной ссылки
         function setRandomLink() {
             const randomIndex = Math.floor(Math.random() * links.length);
             document.getElementById('randomIframe').src = links[randomIndex];
         }
 
-        // Начальное значение
+        // Выполняем при загрузке страницы
         window.onload = setRandomLink;
     </script>
 </body>
