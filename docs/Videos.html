@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Videos</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Скрыть полосы прокрутки */
+        }
+
+        #randomIframe {
+            position: fixed; /* Фиксируем положение фрейма */
+            top: 0;
+            left: 0;
+            width: 100%; /* Растягиваем на полную ширину */
+            height: 100%; /* Растягиваем на полную высоту */
+            border: none; /* Убираем границы */
+        }
+    </style>
+</head>
+<body>
+    <!-- Элемент iframe на весь экран -->
+    <iframe id="randomIframe"></iframe>
+
+    <script>
+        const links = [
+            'https://foxvideo-web.github.io/Web/?date=2026/03/01&chanell=memeha&id=31',
+            'https://foxvideo-web.github.io/Web/?date=2026/02/21&chanell=memeha&id=30',
+            'https://foxvideo-web.github.io/Web/?date=2026/02/21&chanell=memeha&id=29',
+            'https://foxvideo-web.github.io/Web/?date=2026/02/21&chanell=memeha&id=28',
+            'https://foxvideo-web.github.io/Web/?date=2026/02/21&chanell=memeha&id=27',
+            'https://foxvideo-web.github.io/Web/?date=2026/02/21&chanell=memeha&id=26',
+            'https://foxvideo-web.github.io/Web/?date=2026/02/20&chanell=memeha&id=25',
+            'https://foxvideo-web.github.io/Web/?date=2026/02/20&chanell=memeha&id=24',
+            'https://foxvideo-web.github.io/Web/?date=2026/02/20&chanell=memeha&id=23',
+            'https://foxvideo-web.github.io/Web/?date=2026/02/20&chanell=memeha&id=22',
+            'https://foxvideo-web.github.io/Web/?date=2026/02/20&chanell=memeha&id=21',
+            'https://foxvideo-web.github.io/Web/?date=2026/02/20&chanell=memeha&id=20',
+            'https://foxvideo-web.github.io/Web/?date=2026/02/20&chanell=memeha&id=19',
+            'https://foxvideo-web.github.io/Web/?date=2026/02/20&chanell=memeha&id=18',
+            'https://foxvideo-web.github.io/Web/?date=2026/02/20&chanell=memeha&id=17',
+            'https://foxvideo-web.github.io/Web/?date=2026/02/20&chanell=memeha&id=16',
+            'https://foxvideo-web.github.io/Web/?date=2026/02/20&chanell=memeha&id=15',
+            'https://foxvideo-web.github.io/Web/?date=2026/02/20&chanell=memeha&id=14',
+            'https://foxvideo-web.github.io/Web/?date=2025/12/20&chanell=orange-fox-studios-news&id=9',
+            'https://foxvideo-web.github.io/Web/?date=2025/11/21&chanell=shadow&id=5',
+            'https://foxvideo-web.github.io/Web/?date=2025/10/25&chanell=memeha&id=13',
+            'https://foxvideo-web.github.io/Web/?date=2025/10/24&chanell=orange-fox-studios-news&id=8',
+            'https://foxvideo-web.github.io/Web/?date=2025/10/11&chanell=orange-fox-studios-news&id=7',
+            'https://foxvideo-web.github.io/Web/?date=2025/10/11&chanell=orange-fox-studios-news&id=6',
+            'https://foxvideo-web.github.io/Web/?date=2025/09/30&chanell=memeha&id=12',
+            'https://foxvideo-web.github.io/Web/?date=2025/09/29&chanell=memeha&id=11',
+            'https://foxvideo-web.github.io/Web/?date=2025/09/19&chanell=memeha&id=10',
+            'https://foxvideo-web.github.io/Web/?date=2025/09/19&chanell=memeha&id=9',
+            'https://foxvideo-web.github.io/Web/?date=2025/09/19&chanell=memeha&id=8',
+            'https://foxvideo-web.github.io/Web/?date=2025/09/19&chanell=memeha&id=7',
+            'https://foxvideo-web.github.io/Web/?date=2025/09/19&chanell=shadow&id=4',
+            'https://foxvideo-web.github.io/Web/?date=2025/09/18&chanell=shadow&id=3',
+            'https://foxvideo-web.github.io/Web/?date=2025/09/18&chanell=shadow&id=2',
+            'https://foxvideo-web.github.io/Web/?date=2025/09/18&chanell=shadow&id=1',
+            'https://foxvideo-web.github.io/Web/?date=2025/09/18&chanell=memeha&id=6',
+            'https://foxvideo-web.github.io/Web/?date=2025/09/18&chanell=memeha&id=5',
+            'https://foxvideo-web.github.io/Web/?date=2025/09/18&chanell=memeha&id=4',
+            'https://foxvideo-web.github.io/Web/?date=2025/09/18&chanell=memeha&id=3',
+            'https://foxvideo-web.github.io/Web/?date=2025/09/18&chanell=memeha&id=2',
+            'https://foxvideo-web.github.io/Web/?date=2025/09/18&chanell=memeha&id=1'
+        ];
+
+        function setRandomLink() {
+            const randomIndex = Math.floor(Math.random() * links.length); // Выбираем случайную ссылку
+            document.getElementById('randomIframe').src = links[randomIndex]; // Меняем источник фрейма
+        }
+
+        // Запускаем установку случайной ссылки при загрузке страницы
+        window.onload = setRandomLink;
+    </script>
+</body>
+</html>
+Изменения, внесённые в исходный код:
+Размеры фрейма: Теперь фрейм растянут на всю доступную площадь экрана благодаря стилям:
+
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
