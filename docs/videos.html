@@ -2,25 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Важно для мобильного дизайна -->
     <title>Redirect On Scroll Example</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
-            overflow-y: scroll; /* Включаем вертикальную прокрутку */
-            height: 200vh; /* Сделаем искусственно длиннее страницу */
+            overflow-x: hidden; /* Отключаем горизонтальную прокрутку */
+            overflow-y: auto; /* Разрешаем вертикальную прокрутку */
+            min-height: 100vh; /* Минимальная высота равна высоте экрана */
         }
 
         #randomIframe {
             position: relative;
             width: 100%;
-            height: 100vh;
+            height: 100vh; /* Растяжение фрейма на весь экран */
             border: none;
         }
     </style>
 </head>
 <body>
-    <!-- Растянутый фрейм -->
+    <!-- Фрейм на весь экран -->
     <iframe id="randomIframe"></iframe>
 
     <script>
@@ -67,28 +69,18 @@
             'https://foxvideo-web.github.io/Web/?date=2025/09/18&chanell=memeha&id=1'
         ];
 
-        // Переменная для отслеживания предыдущей позиции прокрутки
-        let lastScrollPosition = 0;
-
         // Функция обработки прокрутки
         function handleScroll() {
-            const currentScrollPosition = window.scrollY || window.pageYOffset;
-
-            // Проверяем направление прокрутки
-            if (currentScrollPosition > lastScrollPosition + 0.5 && Date.now() - startTime >= 50) {
-                location.href = 'https://foxvideo-web.github.io/Web/videos.html';
+            // Простая проверка на минимальное перемещение вниз
+            if ((window.scrollY || window.pageYOffset) > 0.5) {
+                location.href = 'https://foxvideo-web.github.io/Web/videos.html'; // Перенаправляем на новое местоположение
             }
-
-            lastScrollPosition = currentScrollPosition;
         }
 
-        // Начало отсчета времени
-        let startTime = Date.now();
-
-        // Назначаем слушатель прокрутки
+        // Начинаем следить за событием прокрутки
         window.addEventListener('scroll', handleScroll);
 
-        // Первая загрузка случайной ссылки
+        // Первое присвоение случайной ссылки
         function setRandomLink() {
             const randomIndex = Math.floor(Math.random() * links.length);
             document.getElementById('randomIframe').src = links[randomIndex];
