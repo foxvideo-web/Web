@@ -2,26 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Random Videos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Адаптация под мобильные устройства -->
+    <title>Adaptive Random Iframe Example</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Скрыть полосы прокрутки */
+            overflow: hidden; /* Убираем полосы прокрутки */
         }
 
         #randomIframe {
-            position: fixed; /* Фиксируем положение фрейма */
-            top: 0;
-            left: 0;
-            width: 100%; /* Растягиваем на полную ширину */
-            height: 100%; /* Растягиваем на полную высоту */
-            border: none; /* Убираем границы */
+            position: relative; /* Позиционируем относительным образом */
+            width: 100%; /* Автоматически адаптируется под устройство */
+            height: calc(100vh - env(safe-area-inset-top)); /* Вычитаем пространство safe area для iPhone X+ */
+            border: none; /* Убираем рамку */
         }
     </style>
 </head>
 <body>
-    <!-- Элемент iframe на весь экран -->
+    <!-- Элемент iframe, растянутый на весь экран -->
     <iframe id="randomIframe"></iframe>
 
     <script>
@@ -49,7 +48,7 @@
             'https://foxvideo-web.github.io/Web/?date=2025/10/25&chanell=memeha&id=13',
             'https://foxvideo-web.github.io/Web/?date=2025/10/24&chanell=orange-fox-studios-news&id=8',
             'https://foxvideo-web.github.io/Web/?date=2025/10/11&chanell=orange-fox-studios-news&id=7',
-            'https://foxvideo-web.github.io/Web/?date=2025/10/11&chanell=orange-fox-studios-news&id=6',
+            'https://foxvideo-web.github.io/Web/?date=2025/10/11&channel=orange-fox-studios-news&id=6',
             'https://foxvideo-web.github.io/Web/?date=2025/09/30&chanell=memeha&id=12',
             'https://foxvideo-web.github.io/Web/?date=2025/09/29&chanell=memeha&id=11',
             'https://foxvideo-web.github.io/Web/?date=2025/09/19&chanell=memeha&id=10',
@@ -69,11 +68,11 @@
         ];
 
         function setRandomLink() {
-            const randomIndex = Math.floor(Math.random() * links.length); // Выбираем случайную ссылку
-            document.getElementById('randomIframe').src = links[randomIndex]; // Меняем источник фрейма
+            const randomIndex = Math.floor(Math.random() * links.length); // Генерируем случайный индекс
+            document.getElementById('randomIframe').src = links[randomIndex]; // Проставляем ссылку
         }
 
-        // Запускаем установку случайной ссылки при загрузке страницы
+        // Установка случайной ссылки при загрузке страницы
         window.onload = setRandomLink;
     </script>
 </body>
